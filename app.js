@@ -2,6 +2,22 @@ const darkMode = document.getElementById("dark-mode");
 const body = document.getElementById("body")
 darkMode.addEventListener("click", () => body.classList.add("bg-dark text-white"));
 
+if (localStorage.getItem("darkMode") === "enabled") {
+    body.classList.add("bg-dark", "text-white");
+}
+
+// Toggle dark mode and save preference
+darkMode.addEventListener("click", () => {
+    body.classList.toggle("bg-dark");
+    body.classList.toggle("text-white");
+
+    // Save mode preference
+    if (body.classList.contains("bg-dark")) {
+        localStorage.setItem("darkMode", "enabled");
+    } else {
+        localStorage.setItem("darkMode", "disabled");
+    }
+});
 
 document.getElementById('validateBtn').addEventListener('click', () => {
     let fileInput = document.getElementById('fileInput');
